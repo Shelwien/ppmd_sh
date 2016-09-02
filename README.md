@@ -27,4 +27,4 @@ To use:
 Full commandline:
  pmd c/d input_file output_file [order] [memory] [reset_flag]
  
- Contacts: shelwien.san@gmail.com
+ Contacts: shelwien.san{at}gmail.com
