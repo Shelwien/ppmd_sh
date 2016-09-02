@@ -2,7 +2,7 @@
 
 ppmd_sh is a statistical compressor based on Dmitry Shkarin's ppmd vJr1 - see http://compression.ru/ds/
 
-There's a benchmark: http://compressionratings.com/i_ppmd.html
+There's a benchmark: http://web.archive.org/web/20160729232814/http://compressionratings.com/i_ppmd.html
 
 Basically ppmd is the only practical implementations of that method.
 There were a few others, but they were severely limited by file size and had other quirks.
