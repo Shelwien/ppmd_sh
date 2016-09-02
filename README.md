@@ -21,10 +21,10 @@ callback functions, or compress small blocks independently.
 To compile: g++ -O3 -s pmd.cpp -ILib -Ilibpmd -o pmd
 
 To use: 
- Compress:   pmd c input_file output_file
- Decompress: pmd d input_file output_file
+> Compress:   pmd c input_file output_file
+> Decompress: pmd d input_file output_file
  
 Full commandline:
- pmd c/d input_file output_file [order] [memory] [reset_flag]
+> pmd c/d input_file output_file [order] [memory] [reset_flag]
  
  Contacts: shelwien.san@gmail.com
