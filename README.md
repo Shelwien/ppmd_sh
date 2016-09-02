@@ -16,3 +16,12 @@ Unlike original, ppmd_sh codec is a normal object, and works as a coroutine - wh
 that coding function returns to the caller with a status code asking to replace input or
 output buffer, and then next call resumes the process. Thus, there's no need to write global
 callback functions, or compress small blocks independently.
+
+To compile: gcc -O3 -s pmd.cpp -o pmd
+
+To use: 
+ Compress:   pmd c input_file output_file
+ Decompress: pmd d input_file output_file
+ 
+Full commandline:
+ pmd c/d input_file output_file [order] [memory] [reset_flag]
