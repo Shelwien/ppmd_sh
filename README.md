@@ -17,7 +17,7 @@ that coding function returns to the caller with a status code asking to replace 
 output buffer, and then next call resumes the process. Thus, there's no need to write global
 callback functions, or compress small blocks independently.
 
-To compile: g++ -O3 -s pmd.cpp -o pmd
+To compile: g++ -O3 -s pmd.cpp -ILib -Ilibpmd -o pmd
 
 To use: 
  Compress:   pmd c input_file output_file
