@@ -1,6 +1,7 @@
 # ppmd_sh v9  by Eugene Shelwien.
 
 ppmd_sh is a statistical compressor based on Dmitry Shkarin's ppmd vJr1 - see http://compression.ru/ds/
+
 There's a benchmark: http://compressionratings.com/i_ppmd.html
 
 Basically ppmd is the only practical implementations of that method.
