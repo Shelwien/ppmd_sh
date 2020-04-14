@@ -33,8 +33,6 @@ PPM_CONTEXT* UpdateModel( PPM_CONTEXT* MinContext ) {
     }
   }
 
-  pc=MaxContext;
-
   // try increasing the order
   if( !OrderFall && iFSuccessor ) {
     FoundState->iSuccessor = CreateSuccessors( 1, p, MinContext );

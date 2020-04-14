@@ -1,7 +1,8 @@
 
+#define INC_FLEN
 #include "common.inc"
-#include "coro2b.inc"
-#include "libpmd.inc"
+#include "coro3b_fake.inc"
+#include "libpmd/libpmd.inc"
 
 ALIGN(4096) pmd_codec C;
 
@@ -46,6 +47,9 @@ int main( int argc, char** argv ) {
   pmd_args1[3] = (f_DEC==0) ? flen(f) : -1;
 
   if( C.Init(f_DEC,pmd_args1) ) return 5;
+
+C.f = f;
+C.g = g;
 
   C.addout( outbuf, outbufsize );
 
