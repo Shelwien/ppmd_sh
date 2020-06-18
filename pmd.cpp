@@ -1,10 +1,6 @@
 
 #define INC_FLEN
 #include "common.inc"
-#include "coro3b_fake.inc"
-#include "libpmd/libpmd.inc"
-
-ALIGN(4096) pmd_codec C;
 
 enum { inpbufsize = 1<<16, outbufsize = 1<<16 };
 ALIGN(4096) byte inpbuf[inpbufsize];
@@ -14,7 +10,7 @@ uint pmd_args1[] = { 12, 256, 1, 0 };
 
 #include "timer.inc"
 
-void PrintInfo( FILE* f, FILE* g, int iram, uint Mode ) {
+void PrintInfo( FILE* f, FILE* g, uint iram, uint Mode ) {
   if( Mode ) { FILE* t=f; f=g; g=t; }
   double fn = ftell(f);
   double gn = ftell(g);
@@ -23,8 +19,25 @@ void PrintInfo( FILE* f, FILE* g, int iram, uint Mode ) {
   double tm = curtick-starttick; tm/=1000; 
   float sp = tm>0 ? fn/tm/1024 : 0;
   if( Mode ) { double t=gn; gn=fn; fn=t; } // SWAP( fn, gn );
-  printf( " %.0lf > %.0lf, %4.2f bpb, %6.1fM RAM, %4.0fKb/s\r", fn,gn, bpb, ram/(1<<20), sp );
-  fflush(stdout);
+  fprintf(stderr, " %.0lf > %.0lf, %4.2f bpb, %6.1fM RAM, %4.0fKb/s\r", fn,gn, bpb, ram/(1<<20), sp );
+//  fflush(stdout);
+}
+
+#include "coro3b_fake.inc"
+#include "libpmd/libpmd.inc"
+
+ALIGN(4096) pmd_codec C;
+
+uint f_DEC = 0;
+
+int g_getc( FILE* f, FILE* g ) {
+  static int g_block = 1000000;
+  if_e0( --g_block<0 ) { CheckTimer(0); g_block=1000000; PrintInfo( f, g, C.GetUsedMemory(), f_DEC ); }
+  return getc(f);
+}
+
+void g_putc( int c, FILE* f, FILE* g ) {
+  putc( c, g );
 }
 
 int main( int argc, char** argv ) {
@@ -34,7 +47,7 @@ int main( int argc, char** argv ) {
   FILE* f = fopen(argv[2],"rb"); if( f==0 ) return 2;
   FILE* g = fopen(argv[3],"wb"); if( g==0 ) return 3;
 
-  uint f_DEC = (argv[1][0]=='d');
+  f_DEC = (argv[1][0]=='d');
 
   {
     int i;

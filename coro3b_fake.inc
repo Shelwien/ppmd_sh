@@ -1,4 +1,7 @@
 
+int g_getc( FILE* f, FILE* g );
+void g_putc( int c, FILE* f, FILE* g );
+
 struct Coroutine {
   uint f_quit;
   FILE* f;
@@ -14,8 +17,8 @@ struct Coroutine {
 
   void chkout( uint d=0 ) {}
 
-  uint get( void ) { return getc(f); }
-  void put( uint c ) { putc(c,g); }
+  uint get( void ) { return g_getc(f,g); }
+  void put( uint c ) { g_putc(c,f,g); }
 
   void coro_init( void ) {
     f_quit=0;
