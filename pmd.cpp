@@ -42,7 +42,16 @@ void g_putc( int c, FILE* f, FILE* g ) {
 
 int main( int argc, char** argv ) {
 
-  if( argc<4 ) return 1;
+  char progname[] = "ppmd";
+  if(argc < 4)
+    {
+    printf("Usage:\n"\
+    "	%s <command> <file_in> <file_out>\n", progname);
+    printf("\nCommands:\n"\
+    "	c	Compress\n"\
+    "	d	Decompress\n");
+    return 0;
+    }
 
   FILE* f = fopen(argv[2],"rb"); if( f==0 ) return 2;
   FILE* g = fopen(argv[3],"wb"); if( g==0 ) return 3;
