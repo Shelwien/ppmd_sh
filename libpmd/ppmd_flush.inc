@@ -50,6 +50,7 @@ void StartModelRare( void ) {
 
     // masked SEE init
     for( i=0; i<23; i++ ) for( k=0; k<32; k++ ) SEE2Cont[i][k].init(8*i+5);
+    DummySEE2Cont.init(0);
   }
 }
 
