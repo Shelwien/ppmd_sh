@@ -143,7 +143,7 @@ struct Model: Rangecoder_SH1x<ProcMode> {
       rc_Quit(); 
     }
 */
-    yield(this,0);
+    this->yield(this,0);
   }
 
   #include "ppmd_byte.inc"
