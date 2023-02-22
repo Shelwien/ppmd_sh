@@ -30,7 +30,7 @@ uint GetUsedMemory() {
 }
 
 void StopSubAllocator() {
-  if( SubAllocatorSize ) SubAllocatorSize=0, delete HeapStart;
+  if( SubAllocatorSize ) { SubAllocatorSize=0; delete[] HeapStart; }
 //  if( SubAllocatorSize ) SubAllocatorSize=0, VirtualFree(HeapStart, 0, MEM_RELEASE);
 }
 
